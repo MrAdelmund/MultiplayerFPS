@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 public class tellServer : NetworkBehaviour {
 
-	private NetworkStartPosition[] spawnPoints;
+	public NetworkStartPosition[] spawnPoints;
     public int hp = 3;
     public int startHP = 3;
     public Color teamColor;
