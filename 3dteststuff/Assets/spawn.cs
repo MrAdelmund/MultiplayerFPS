@@ -67,10 +67,11 @@ public class spawn :NetworkBehaviour {
         LobbyManager lm = GameObject.Find("LobbyManager").GetComponent<LobbyManager>();
         for (int i = 0; i < playerlist.Length; i++)
         {
-            playerlist[i].name = lm.lockedPlayers[i].GetComponent<LobbyPlayer>().playerName;
-            playerlist[i].GetComponentInChildren<MeshRenderer>().material.color = lm.lockedPlayers[i].GetComponent<LobbyPlayer>().playerColor;
-            playerlist[i].GetComponent<tellServer>().teamColor = lm.lockedPlayers[i].GetComponent<LobbyPlayer>().playerColor;
+            playerlist[i].name = lm.lobbySlots[i].GetComponent<LobbyPlayer>().playerName;
+            playerlist[i].GetComponentInChildren<MeshRenderer>().material.color = lm.lobbySlots[i].GetComponent<LobbyPlayer>().playerColor;
+            playerlist[i].GetComponent<tellServer>().teamColor = lm.lobbySlots[i].GetComponent<LobbyPlayer>().playerColor;
             playerlist[i].GetComponent<tellServer>().teamNumber = System.Array.IndexOf(LobbyPlayer.Colors, playerlist[i].GetComponent<tellServer>().teamColor);
+            playerlist[i].GetComponentsInChildren<Text>()[1].text = playerlist[i].name;
         }
     }
 

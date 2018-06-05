@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class tellServer : NetworkBehaviour {
 
@@ -10,6 +11,7 @@ public class tellServer : NetworkBehaviour {
     public int startHP = 3;
     public Color teamColor;
     public int teamNumber;
+    
 
 	public bool hit = false;
 
@@ -21,9 +23,7 @@ public class tellServer : NetworkBehaviour {
 
 	void Update()
 	{
-		if (hit) {
-
-		}
+        GetComponentInChildren<Slider>().value = hp;
 	}
 
 	[Command]
