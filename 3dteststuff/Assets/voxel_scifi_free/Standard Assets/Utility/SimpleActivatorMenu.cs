@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using UnityEngine;
 
 namespace UnityStandardAssets.Utility
@@ -35,4 +35,4 @@ namespace UnityStandardAssets.Utility
             camSwitchButton.text = objects[m_CurrentActiveObject].name;
         }
     }
-}
+}*/

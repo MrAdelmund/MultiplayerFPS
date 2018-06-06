@@ -62,7 +62,7 @@ public class Health : NetworkBehaviour {
 	//}
 
 	[ClientRpc]
-	void RpcRespawn()
+	public void RpcRespawn()
 	{
 		if (isLocalPlayer)
 		{

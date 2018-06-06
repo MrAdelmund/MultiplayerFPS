@@ -1,19 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-public class RayCastShootComplete : MonoBehaviour {
+public class RayCastShootComplete : NetworkBehaviour {
 
 	public int gunDamage = 1;											// Set the number of hitpoints that this gun will take away from shot objects with a health script
 	public float fireRate = 0.25f;										// Number in seconds which controls how often the player can fire
 	public float weaponRange = 50f;										// Distance in Unity units over which the player can fire
 	public float hitForce = 100f;										// Amount of force which will be added to objects with a rigidbody shot by the player
 	public Transform gunEnd;											// Holds a reference to the gun end object, marking the muzzle location of the gun
-
+    public GameObject spawnObj;
 	private Camera fpsCam;												// Holds a reference to the first person camera
 	private WaitForSeconds shotDuration = new WaitForSeconds(0.07f);	// WaitForSeconds object used by our ShotEffect coroutine, determines time laser line will remain visible
 	private AudioSource gunAudio;										// Reference to the audio source which will play our shooting sound effect
 	private LineRenderer laserLine;										// Reference to the LineRenderer component which will display our laserline
-	private float nextFire;												// Float to store the time the player will be allowed to fire again, after firing
+	private float nextFire;
+    // Float to store the time the player will be allowed to fire again, after firing
 
 
 	void Start()
@@ -31,7 +33,7 @@ public class RayCastShootComplete : MonoBehaviour {
 
 	void Update()
 	{
-		if (Input.GetButtonDown ("Fire1") && Time.time > nextFire) {
+		if (Input.GetButtonDown ("Fire1") && Time.time > nextFire && GetComponentInParent<returnPlayer>().isLocal()) {
 			Fire ();
 		}
 	}
@@ -65,6 +67,8 @@ public class RayCastShootComplete : MonoBehaviour {
 
 				// Get a reference to a health script attached to the collider we hit
 				CharacterController healthh = hit.collider.GetComponent<CharacterController>();
+            GameObject aa = (GameObject)Instantiate(spawnObj, hit.point, Quaternion.identity);
+            Destroy(aa, 1);
 
 				// If there was a health script attached
 			if (healthh != null) {

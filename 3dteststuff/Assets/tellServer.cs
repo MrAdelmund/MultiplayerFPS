@@ -11,6 +11,7 @@ public class tellServer : NetworkBehaviour {
     public int startHP = 3;
     public Color teamColor;
     public int teamNumber;
+    public AudioClip sound;
     
 
 	public bool hit = false;
@@ -45,6 +46,7 @@ public class tellServer : NetworkBehaviour {
             {
                 Debug.Log("enemy color hit!");
                 Enemy.GetComponent<tellServer>().hp = Enemy.GetComponent<tellServer>().hp - 1;
+                GetComponent<AudioSource>().PlayOneShot(sound);
                 Debug.Log("New HP: " + Enemy.GetComponent<tellServer>().hp);
                 if (Enemy.GetComponent<tellServer>().hp <= 0)
                 {
@@ -58,7 +60,7 @@ public class tellServer : NetworkBehaviour {
 	}
 
 	[ClientRpc]
-	void RpcCalledToClient(GameObject Enemy)
+	public void RpcCalledToClient(GameObject Enemy)
 	{
 		Vector3 spawnPoint = Vector3.zero;
 

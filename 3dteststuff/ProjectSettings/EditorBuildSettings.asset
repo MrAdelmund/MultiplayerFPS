@@ -8,16 +8,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/debug2.unity
     guid: c8f8772a71c74674394bff07e7da0ce9
-  - enabled: 1
+  - enabled: 0
     path: Assets/NetworkLobby.unity
     guid: 3c0d76c55eed6214f9d3b070caede5d3
   - enabled: 1
     path: Assets/debug1.unity
     guid: 68b3b1862fed1344b8ebebb66f06e078
-  - enabled: 1
+  - enabled: 0
     path: Assets/DungeonMap.unity
     guid: 0c98d728434055b44af3a19c01a4e6de
   - enabled: 1
     path: Assets/LoadData.unity
     guid: 0658caf7fd3d8d741bdeb5104ce6a870
+  - enabled: 1
+    path: Assets/Scenes/Forest/Forest.unity
+    guid: 4bdbf242191a8e54cb3f033a09fcd3e1
+  - enabled: 1
+    path: Assets/Scenes/New Folder/Dungeon1.unity
+    guid: d670f7e88d1ba5f4392d7cafcb911a76
+  - enabled: 1
+    path: Assets/Scenes/Kyler/KylerScene.unity
+    guid: d35d07d8bd1465543bc0af470d6bd0d4
+  - enabled: 1
+    path: Assets/Scenes/DamonsStuff/DamonsScene.unity
+    guid: 50395e435eb687e4396a88bf720aa95a
   m_configObjects: {}
