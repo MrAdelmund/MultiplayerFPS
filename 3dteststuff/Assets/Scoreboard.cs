@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Scoreboard : MonoBehaviour {
-
+    /*
     // Use this for initialization
     GameObject lm;
 	void Start () {
@@ -35,5 +35,5 @@ public class Scoreboard : MonoBehaviour {
             s = "Their Team: " + theirScore + " \n\rMy Team: " + myTeamPoints;
         }
         GetComponentInChildren<Text>().text = "Scoreboard: \n\r" + s;
-	}
+	}*/
 }

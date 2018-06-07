@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Prototype.NetworkLobby;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -12,7 +13,8 @@ public class tellServer : NetworkBehaviour {
     public Color teamColor;
     public int teamNumber;
     public AudioClip sound;
-    
+
+    public int kills;
 
 	public bool hit = false;
 
@@ -50,6 +52,33 @@ public class tellServer : NetworkBehaviour {
                 Debug.Log("New HP: " + Enemy.GetComponent<tellServer>().hp);
                 if (Enemy.GetComponent<tellServer>().hp <= 0)
                 {
+                    Debug.Log(System.Array.IndexOf(LobbyPlayer.Colors, teamColor));
+                    if(teamColor == Color.blue)
+                    {
+                        Debug.LogError("foo");
+                        GetComponent<scoreboard1>().team1Kills++;
+                    }
+                   else  if (teamColor == Color.red)
+                    {
+                        Debug.LogError("foo");
+                        GetComponent<scoreboard1>().team2Kills++;
+                    }
+                    else if (teamColor == Color.cyan)
+                    {
+                        GetComponent<scoreboard1>().team3Kills++;
+                    }
+                    else if (teamColor == Color.yellow)
+                    {
+                        GetComponent<scoreboard1>().team4Kills++;
+                    }
+                    else if (teamColor == Color.green)
+                    {
+                        GetComponent<scoreboard1>().team5Kills++;
+                    }
+                    else if (teamColor == Color.magenta)
+                    {
+                        GetComponent<scoreboard1>().team6Kills++;
+                    }
                     Enemy.GetComponent<tellServer>().hp = startHP;
                     Enemy.transform.position = spawnPoint;
                 }
@@ -76,8 +105,34 @@ public class tellServer : NetworkBehaviour {
             Debug.Log("New HP: " + Enemy.GetComponent<tellServer>().hp);
             if (Enemy.GetComponent<tellServer>().hp <= 0)
             {
+                Debug.Log(System.Array.IndexOf(LobbyPlayer.Colors, teamColor));
+                if (teamColor == Color.blue)
+                {
+                    Debug.LogError("foo");
+                    GetComponent<scoreboard1>().team1Kills++;
+                }
+                else if (teamColor == Color.red)
+                {
+                    Debug.LogError("foo");
+                    GetComponent<scoreboard1>().team2Kills++;
+                }
+                else if (teamColor == Color.cyan)
+                {
+                    GetComponent<scoreboard1>().team3Kills++;
+                }
+                else if (teamColor == Color.yellow)
+                {
+                    GetComponent<scoreboard1>().team4Kills++;
+                }
+                else if (teamColor == Color.green)
+                {
+                    GetComponent<scoreboard1>().team5Kills++;
+                }
+                else if (teamColor == Color.magenta)
+                {
+                    GetComponent<scoreboard1>().team6Kills++;
+                }
                 Enemy.GetComponent<tellServer>().hp = startHP;
-                // Set the player’s position to the chosen spawn point
                 Enemy.transform.position = spawnPoint;
             }
         }
@@ -86,6 +141,3 @@ public class tellServer : NetworkBehaviour {
 	}
 
 }
-	
-
-
