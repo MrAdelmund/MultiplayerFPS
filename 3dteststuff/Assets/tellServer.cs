@@ -100,37 +100,39 @@ public class tellServer : NetworkBehaviour {
 		}
         if (Enemy.GetComponent<tellServer>().teamColor != teamColor)
         {
+           
             Debug.Log("enemy color hit!");
             Enemy.GetComponent<tellServer>().hp = Enemy.GetComponent<tellServer>().hp - 1;
             Debug.Log("New HP: " + Enemy.GetComponent<tellServer>().hp);
             if (Enemy.GetComponent<tellServer>().hp <= 0)
             {
+                kills++;
                 Debug.Log(System.Array.IndexOf(LobbyPlayer.Colors, teamColor));
                 if (teamColor == Color.blue)
                 {
                     Debug.LogError("foo");
-                    GetComponent<scoreboard1>().team1Kills++;
+                    PlayerPrefs.SetInt("team1", PlayerPrefs.GetInt("team1") + 1);
                 }
                 else if (teamColor == Color.red)
                 {
                     Debug.LogError("foo");
-                    GetComponent<scoreboard1>().team2Kills++;
+                    PlayerPrefs.SetInt("team2", PlayerPrefs.GetInt("team2") + 1);
                 }
                 else if (teamColor == Color.cyan)
                 {
-                    GetComponent<scoreboard1>().team3Kills++;
+                    PlayerPrefs.SetInt("team3", PlayerPrefs.GetInt("team3") + 1);
                 }
                 else if (teamColor == Color.yellow)
                 {
-                    GetComponent<scoreboard1>().team4Kills++;
+                    PlayerPrefs.SetInt("team4", PlayerPrefs.GetInt("team4") + 1);
                 }
                 else if (teamColor == Color.green)
                 {
-                    GetComponent<scoreboard1>().team5Kills++;
+                    PlayerPrefs.SetInt("team5", PlayerPrefs.GetInt("team5") + 1);
                 }
                 else if (teamColor == Color.magenta)
                 {
-                    GetComponent<scoreboard1>().team6Kills++;
+                    PlayerPrefs.SetInt("team6", PlayerPrefs.GetInt("team6") + 1);
                 }
                 Enemy.GetComponent<tellServer>().hp = startHP;
                 Enemy.transform.position = spawnPoint;

@@ -32,12 +32,13 @@ public class scoreboard1 : NetworkBehaviour {
 
     public Text myScore;
     public Text highScore;
-
+    public int scoreLimit;
     public int maxScore;
 
     public void Awake()
     {
         StartCoroutine(GetPlayers());
+        scoreLimit = PlayerPrefs.GetInt("scoreLimit");
     }
 
     // Update is called once per frame
@@ -46,6 +47,16 @@ public class scoreboard1 : NetworkBehaviour {
         if (!active) {
             return;
                 }
+
+        if(highst >= PlayerPrefs.GetInt("scoreLimit"))
+        {
+            if (!isServer)
+            {
+                return;
+            }
+            GetComponent<displayScore>().RpcWin(highestName);
+            enabled = false;
+        }
 
         scores = new List<int>();
         scores.Add(team1Kills);
@@ -61,6 +72,8 @@ public class scoreboard1 : NetworkBehaviour {
         if(personalScore > max)
         {
             highst = personalScore;
+            highestName = PlayerPrefs.GetString("name");
+            updateScores();
         }
         change(personalScore, max);
 	}
@@ -79,5 +92,29 @@ public class scoreboard1 : NetworkBehaviour {
         highScore.text = "Highest Score: " + highestName + " : " + highest;
         myScore.text = "Personal Score: " + gameObject.name + " : " + personal;
     }
+
+    public void updateScores()
+    {
+        team1Kills = PlayerPrefs.GetInt("team1");
+        team2Kills = PlayerPrefs.GetInt("team2");
+        team3Kills = PlayerPrefs.GetInt("team3");
+        team4Kills = PlayerPrefs.GetInt("team4");
+        team5Kills = PlayerPrefs.GetInt("team5");
+        team6Kills = PlayerPrefs.GetInt("team6");
+        GameObject[] GA = GameObject.FindGameObjectsWithTag("Player");
+        for(int i = 0; i < GA.Length; i++)
+        {
+            GA[i].GetComponent<scoreboard1>().team1Kills = team1Kills;
+            GA[i].GetComponent<scoreboard1>().team2Kills = team2Kills;
+            GA[i].GetComponent<scoreboard1>().team3Kills = team3Kills;
+            GA[i].GetComponent<scoreboard1>().team4Kills = team4Kills;
+            GA[i].GetComponent<scoreboard1>().team5Kills = team5Kills;
+            GA[i].GetComponent<scoreboard1>().team6Kills = team6Kills;
+            GA[i].GetComponent<scoreboard1>().highestName = highestName;
+        }
+    }
+
+
+
 
 }
